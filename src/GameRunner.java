@@ -5,9 +5,20 @@ class GameRunner {
     private MineSweeper mineSweeper;
     // Displays rules at beginning of game.
     void initRandom(int numberOfMines, int width, int height) {
-        System.out.println("have fun playing minesweeper!");
         mineSweeper = new YourStrategy(width, height);
         mineSweeper.generateMinesRandom(numberOfMines);
+        mineSweeper.print();
+    }
+
+    void initInput(String fileName, int width, int height) {
+        // Load from a file. You need to give the correct width and height yourself.
+        mineSweeper = new YourStrategy(width, height);
+        try {
+            mineSweeper.loadFile(fileName);
+        } catch (Exception e) {
+            System.out.println("error reading file: " + e);
+            System.exit(0);
+        }
         mineSweeper.print();
     }
 

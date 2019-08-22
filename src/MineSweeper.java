@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 abstract class MineSweeper {
 
     // Do NOT use 'field'
@@ -68,22 +72,6 @@ abstract class MineSweeper {
     }
 
     private void printGame(String[][] str) {
-//        for (int x = 0; x < fieldWidth; x++ ) {
-//            System.out.println("");
-//            for (int y = 0; y < fieldHeight; y++ ) {
-//                System.out.print("|");
-//                System.out.print(str[x+1][y+1]);
-//            }
-//            System.out.print("|");
-//        }
-//        for (int y = 0; y < fieldHeight; y++) {
-//            System.out.println("");
-//            for (int x = 0; x < fieldWidth; x++) {
-//                System.out.print("|");
-//                System.out.print(str[x+1][y+1]);
-//            }
-//            System.out.print("|");
-//        }
         for(int x = 1; x < str.length - 1; x++) {
             System.out.println("");
             for(int y = 1; y < str[x].length ; y++) {
@@ -120,6 +108,30 @@ abstract class MineSweeper {
                     }
                 }
             }
+        }
+    }
+
+    void loadFile(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        try {
+            String line = br.readLine();
+
+            int index = 0;
+            while (line != null) {
+                index ++;
+                String[] squares = line.split("|");
+
+                for (int i = 0; i < squares.length; i++ ) {
+                    String square = squares[i];
+                    if (square.equals("*")) {
+                        field[((int)(i/2)+1)][index] = mine;
+                    }
+                }
+
+                line = br.readLine();
+            }
+        } finally {
+            br.close();
         }
     }
 
