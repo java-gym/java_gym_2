@@ -39,16 +39,44 @@ class MineSweeper {
         // It is not allowed to use the 2d array "field" since this is what the game uses to find the mines.
         // '?' is undiscovered and otherwise it will have numbers indicating the standard minesweeper gameplay.
 
-        //TODO: Implement your solution here
-        throw new UnsupportedOperationException("solution not yet implemented");
+        // First turn
+        if (unknown.equals(display[2][2])) {
+            return new int[]{2, 2};
+        }
 
-//        int x = 1;
-//        int y = 1;
-//
-//        int[] pick = new int[2];
-//        pick[0] = x;
-//        pick[1] = y;
-//        return pick;
+        if (unknown.equals(display[6][6])) {
+            return new int[]{6, 6};
+        }
+
+
+        throw new UnsupportedOperationException("todo: ");  //TODO @mark:
+    }
+
+    private void autoReveal(int x, int y) {
+        turn(x, y);
+        detect();
+    }
+
+    void revealNeighboursOfZeros() {
+
+        final int X = field.length;
+        final int Y = field[0].length;
+        final String zero = " 0 ";
+
+        for (int x = 0; x < X; x++) {
+            for (int y = 0; y < Y; y++) {
+                if (unknown.equals(display[x][y])) {
+                    if (x < X - 1 && y < Y - 1 && zero.equals(display[x + 1][y + 1])) autoReveal(x, y);
+                    else if (x < X - 1 && zero.equals(display[x + 1][y]))  autoReveal(x, y);
+                    else if (x < X - 1 && y > 0 && zero.equals(display[x + 1][y - 1]))  autoReveal(x, y);
+                    else if (y < Y - 1 && zero.equals(display[x][y + 1]))  autoReveal(x, y);
+                    else if (y > 0 && zero.equals(display[x][y - 1]))  autoReveal(x, y);
+                    else if (x > 0 && y < Y - 1 && zero.equals(display[x - 1][y + 1]))  autoReveal(x, y);
+                    else if (x > 0 && zero.equals(display[x - 1][y]))  autoReveal(x, y);
+                    else if (x > 0 && y > 0 && zero.equals(display[x - 1][y - 1]))  autoReveal(x, y);
+                }
+            }
+        }
     }
 
     private static void printGame(String[][] str) {

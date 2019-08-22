@@ -13,7 +13,7 @@ class GameRunner {
 
     void test() {
         Scanner scan = new Scanner(System.in);
-        boolean playManually = true;
+        boolean playManually = false;
         int x, y;
         if (playManually) {
             System.out.print("Enter an x coordinate.");
@@ -34,6 +34,7 @@ class GameRunner {
         }
         // The first pick will clear the adjacent tiles that are safe.
         mineSweeper.clear(x, y);
+        mineSweeper.revealNeighboursOfZeros();
         // The mineSweeper will detect the numbers that need to be shown in the field.
         mineSweeper.detect();
         mineSweeper.print();
@@ -65,8 +66,9 @@ class GameRunner {
                     y = pick[1];
                 }
                 mineSweeper.turn(x, y);
-                mineSweeper.isVictory();
                 mineSweeper.detect();
+                mineSweeper.revealNeighboursOfZeros();
+                mineSweeper.isVictory();
                 mineSweeper.print();
             }
         }
