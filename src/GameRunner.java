@@ -27,7 +27,7 @@ class GameRunner {
         }
 
         // If the first tile that is selected is a mine. We remove the mine and place it somewhere else.
-        if (mineSweeper.getTile(x,y).equals(" * ")) {
+        if (mineSweeper.getTile(x, y).equals(" * ")) {
             mineSweeper.generateMinesRandom(1);
             mineSweeper.field[x][y] = " ? ";
         }

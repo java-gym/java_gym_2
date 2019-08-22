@@ -53,7 +53,23 @@ class MineSweeper {
 //        return pick;
     }
 
-    private static void printGame(String[][] str) {
+    private void printGame(String[][] str) {
+//        for (int x = 0; x < fieldWidth; x++ ) {
+//            System.out.println("");
+//            for (int y = 0; y < fieldHeight; y++ ) {
+//                System.out.print("|");
+//                System.out.print(str[x+1][y+1]);
+//            }
+//            System.out.print("|");
+//        }
+//        for (int y = 0; y < fieldHeight; y++) {
+//            System.out.println("");
+//            for (int x = 0; x < fieldWidth; x++) {
+//                System.out.print("|");
+//                System.out.print(str[x+1][y+1]);
+//            }
+//            System.out.print("|");
+//        }
         for(int x = 1; x < str.length - 1; x++) {
             System.out.println("");
             for(int y = 1; y < str[x].length ; y++) {
