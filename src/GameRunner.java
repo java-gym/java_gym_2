@@ -4,16 +4,15 @@ class GameRunner {
 
     private MineSweeper mineSweeper;
     // Displays rules at beginning of game.
-    void initRandom() {
+    void initRandom(int numberOfMines, int width, int height) {
         System.out.println("have fun playing minesweeper!");
-        mineSweeper = new MineSweeper();
-        mineSweeper.generateMinesRandom(1);
+        mineSweeper = new MineSweeper(width, height);
+        mineSweeper.generateMinesRandom(numberOfMines);
         mineSweeper.print();
     }
 
-    void test() {
+    void run(boolean playManually) {
         Scanner scan = new Scanner(System.in);
-        boolean playManually = false;
         int x, y;
         if (playManually) {
             System.out.print("Enter an x coordinate.");
