@@ -1,16 +1,20 @@
-class MineSweeper {
-    String[][] field;
-    private String[][] display;
+abstract class MineSweeper {
 
-    private int fieldWidth;
-    private int fieldHeight;
+    // Do NOT use 'field'
+    private String[][] field;
+
+    // Use 'display' to check the visible board state
+    public String[][] display;
+
+    public int fieldWidth;
+    public int fieldHeight;
 
     private Boolean isDone = false;
     private Boolean isWin = false;
 
-    private String unknown = " ? ";
-    private String mine = " * ";
-    private String empty = "   ";
+    public String unknown = " ? ";
+    public String mine = " * ";
+    public String empty = "   ";
 
     //Constructor places empty spaces in tiles.
     MineSweeper(int width, int height) {
@@ -34,25 +38,7 @@ class MineSweeper {
         }
     }
 
-    int[] pickSquare() {
-        // implement your algorithm to select an x and an y. The first square will have coordinates (1, 1)
-        // The x and y will define which square you have selected.
-        // The minesweeper board you're playing with is the array "display". It is a 2d String array
-        // It is not allowed to use the 2d array "field" since this is what the game uses to find the mines.
-        // '?' is undiscovered and otherwise it will have numbers indicating the standard minesweeper gameplay.
-
-        // First turn
-        if (unknown.equals(display[2][2])) {
-            return new int[]{2, 2};
-        }
-
-        if (unknown.equals(display[6][6])) {
-            return new int[]{6, 6};
-        }
-
-
-        throw new UnsupportedOperationException("todo: ");  //TODO @mark:
-    }
+    abstract int[] pickSquare();
 
     private void autoReveal(int x, int y) {
         turn(x, y);
@@ -99,8 +85,8 @@ class MineSweeper {
     }
 
     // Places n mines at random on the field.
-    void generateMinesRandom(int n) {
-        for (int m = 0; m < n; m++) {
+    void generateMinesRandom(int mineCount) {
+        for (int m = 0; m < mineCount; m++) {
             //Loops until a mine is placed.
             while (true) {
                 int x, y = 0;
@@ -122,7 +108,10 @@ class MineSweeper {
     }
 
     // On first move, this clears the area around the selected tile.
-    void clear(int x, int y) {
+    void clear(
+            int x,
+            int y
+    ) {
         for (int i = (x - 1); i <= (x + 1); i++) {
             for (int j = (y - 1); j <= (y + 1); j++) {
                 if (field[i][j].equals(unknown)){
@@ -134,7 +123,10 @@ class MineSweeper {
     }
 
     // Gets the value of a tile.
-    String getTile(int x, int y) {
+    String getTile(
+            int x,
+            int y
+    ) {
         return field[x][y];
     }
 
@@ -159,7 +151,10 @@ class MineSweeper {
     }
 
     // Takes user's selected coordinates and adjusts the board.
-    void turn(int x, int y) {
+    void turn(
+            int x,
+            int y
+    ) {
         if (field[x][y].equals(unknown)) {
             isDone = false;
             display[x][y] = empty;
@@ -207,5 +202,10 @@ class MineSweeper {
     // Displays location of mines at end of game.
     void onEnd() {
         printGame(field);
+    }
+
+    // Do not call this method in your solution.
+    void doNotCall_RemoveMine(int x, int y) {
+        field[x][y] = " ? ";
     }
 }

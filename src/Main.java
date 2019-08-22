@@ -3,8 +3,8 @@ public class Main {
         // Example of starting a random game of minesweeper
         GameRunner gameRunner = new GameRunner();
         // Initialize the game with the number of mines and the game size
-        gameRunner.initRandom(1, 2, 2);
+        gameRunner.initRandom(15, 12, 12);
         // Run the game. The boolean indicates whether you want to play manually. Set this to false to have it use your algorithm.
-        gameRunner.run(true);
+        gameRunner.run(false);
     }
 }
