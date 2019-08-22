@@ -1,6 +1,6 @@
 class MineSweeper {
-    String[][] field = new String[12][12];
-    private String[][] display = new String[12][12];
+    String[][] field;
+    private String[][] display;
 
     private int fieldWidth;
     private int fieldHeight;
@@ -13,9 +13,11 @@ class MineSweeper {
     private String empty = "   ";
 
     //Constructor places empty spaces in tiles.
-    MineSweeper() {
-        fieldWidth = 10;
-        fieldHeight = 10;
+    MineSweeper(int width, int height) {
+        fieldWidth = width;
+        fieldHeight = height;
+        field = new String[fieldWidth+2][fieldHeight+2];
+        display = new String[fieldWidth+2][fieldHeight+2];
         for (int x = 0; x < field.length; x++) {
             for (int y = 0; y < field[0].length; y++) {
                 //Places blank spaces in the outer lines of the map
@@ -74,8 +76,8 @@ class MineSweeper {
             //Loops until a mine is placed.
             while (true) {
                 int x, y = 0;
-                x = (int)(fieldWidth * Math.random());
-                y = (int)(fieldHeight * Math.random());
+                x = (int)(fieldWidth * Math.random()) + 1;
+                y = (int)(fieldHeight * Math.random()) + 1;
 
                 // So that a mine is placed in a tile visible to the player.
                 if (x >= 1 && x <= fieldWidth) {
@@ -110,8 +112,8 @@ class MineSweeper {
 
     // Detects number of mines around a selected tile.
     void detect() {
-        for (int x = 1; x < display.length - 2; x++) {
-            for (int y = 1; y < display.length - 2; y++) {
+        for (int x = 1; x < display.length - 1; x++) {
+            for (int y = 1; y < display.length - 1; y++) {
                 if (field[x][y].equals(empty)) {
                     int nums = 0;
                     for (int i = (x - 1); i <= (x + 1); i++) {
