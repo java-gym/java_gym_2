@@ -1,3 +1,4 @@
+package javagym;
 
 public class YourStrategy extends MineSweeper {
 

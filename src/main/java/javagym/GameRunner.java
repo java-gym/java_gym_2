@@ -1,3 +1,5 @@
+package javagym;
+
 import java.util.Scanner;
 
 class GameRunner {
