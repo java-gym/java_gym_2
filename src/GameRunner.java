@@ -22,7 +22,7 @@ class GameRunner {
         mineSweeper.print();
     }
 
-    void run(boolean playManually) {
+    boolean run(boolean playManually) {
         Scanner scan = new Scanner(System.in);
         int x, y;
         if (playManually) {
@@ -44,22 +44,22 @@ class GameRunner {
         }
         // The first pick will clear the adjacent tiles that are safe.
         mineSweeper.clear(x, y);
-        mineSweeper.revealNeighboursOfZeros();
         // The mineSweeper will detect the numbers that need to be shown in the field.
         mineSweeper.detect();
+        mineSweeper.revealNeighboursOfZeros();
         mineSweeper.print();
 
         //After first move, loops until the mineSweeper ends.
-        while(true) {
+        while (true) {
             if(mineSweeper.getDone() && mineSweeper.getWin()) {
                 // The player has won
                 System.out.println("You win!");
                 mineSweeper.onEnd();
-                break;
+                return true;
             } else if(mineSweeper.getDone()) {
                 // The player has lost
                 mineSweeper.onEnd();
-                break;
+                return false;
             } else if(!mineSweeper.getDone()) {
                 // The player has to select another square
                 x = -1;

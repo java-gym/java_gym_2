@@ -19,6 +19,17 @@ abstract class MineSweeper {
     public String unknown = " ? ";
     public String mine = " * ";
     public String empty = "   ";
+    public String[] neighbourCount = new String[]{
+            " 0 ",
+            " 1 ",
+            " 2 ",
+            " 3 ",
+            " 4 ",
+            " 5 ",
+            " 6 ",
+            " 7 ",
+            " 8 ",
+    };
 
     //Constructor places empty spaces in tiles.
     MineSweeper(int width, int height) {
