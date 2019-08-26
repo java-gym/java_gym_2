@@ -4,7 +4,7 @@ The second java Challenge!
 
 Update (only) YourStrategy.java to solve the classic minesweeper puzzle. Run tests to check your solution.
 
-The solution which gets most minefields right wins. If that is a tie, the fastest one wins. But of course, anyone who solves it is a winner!
+The solution which gets most minefields right wins. If that is a tie, the fastest one wins. But of course, anyone who solves it is a winner! (But only one will get a prize)
 
 More automatic tests may be added in the near future.
 

@@ -85,13 +85,14 @@ abstract class MineSweeper {
     }
 
     private void printGame(String[][] str) {
-        for(int x = 1; x < str.length - 1; x++) {
+        for (int y = 1; y < str.length - 1; y++) {
             System.out.println("");
-            for(int y = 1; y < str[x].length ; y++) {
+            for (int x = 1; x < str[y].length - 1; x++) {
                 System.out.print("|");
                 // Prints out content of each tile.
                 System.out.print(str[x][y]);
             }
+            System.out.print("|");
         }
         System.out.println("");
     }
