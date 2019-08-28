@@ -5,10 +5,11 @@ import java.util.Scanner;
 class GameRunner {
 
     private MineSweeper mineSweeper;
+
     // Displays rules at beginning of game.
-    void initRandom(int numberOfMines, int width, int height) {
+    void initRandom(int numberOfMines, int width, int height, int seed) {
         mineSweeper = new YourStrategy(width, height);
-        mineSweeper.generateMinesRandom(numberOfMines);
+        mineSweeper.generateMinesRandom(numberOfMines, seed);
         mineSweeper.print();
     }
 
@@ -41,7 +42,7 @@ class GameRunner {
 
         // If the first tile that is selected is a mine. We remove the mine and place it somewhere else.
         if (mineSweeper.getTile(x, y).equals(" * ")) {
-            mineSweeper.generateMinesRandom(1);
+            mineSweeper.generateMinesRandom(1, -1);
             mineSweeper.doNotCall_RemoveMine(x, y);
         }
         // The first pick will clear the adjacent tiles that are safe.

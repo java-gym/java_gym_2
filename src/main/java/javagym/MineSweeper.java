@@ -3,6 +3,7 @@ package javagym;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Random;
 
 abstract class MineSweeper {
 
@@ -32,6 +33,7 @@ abstract class MineSweeper {
             " 7 ",
             " 8 ",
     };
+    private Random rand;
 
     //Constructor places empty spaces in tiles.
     MineSweeper(int width, int height) {
@@ -103,13 +105,18 @@ abstract class MineSweeper {
     }
 
     // Places n mines at random on the field.
-    void generateMinesRandom(int mineCount) {
+    void generateMinesRandom(int mineCount, int seed) {
+        if (rand == null) {
+            if (seed <= 0) {
+                seed = (int) (1e9 * Math.random());
+            }
+            rand = new Random(seed);
+        }
         for (int m = 0; m < mineCount; m++) {
             //Loops until a mine is placed.
             while (true) {
-                int x, y = 0;
-                x = (int)(fieldWidth * Math.random()) + 1;
-                y = (int)(fieldHeight * Math.random()) + 1;
+                int x = rand.nextInt(fieldWidth) + 1;
+                int y = rand.nextInt(fieldHeight) + 1;
 
                 // So that a mine is placed in a tile visible to the player.
                 if (x >= 1 && x <= fieldWidth) {
