@@ -7,36 +7,6 @@ import static javagym.Helper.testPseudoRandomGame;
 class Large {
 
 	@Test
-	void large001() {
-		testPseudoRandomGame(22, 1);
-	}
-
-	@Test
-	void large002() {
-		testPseudoRandomGame(22, 2);
-	}
-
-	@Test
-	void large003() {
-		testPseudoRandomGame(22, 3);
-	}
-
-	@Test
-	void large004() {
-		testPseudoRandomGame(22, 4);
-	}
-
-	@Test
-	void large005() {
-		testPseudoRandomGame(22, 5);
-	}
-
-	@Test
-	void large006() {
-		testPseudoRandomGame(22, 6);
-	}
-
-	@Test
 	void large007() {
 		testPseudoRandomGame(22, 7);
 	}

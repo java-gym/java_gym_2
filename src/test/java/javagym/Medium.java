@@ -7,36 +7,6 @@ import static javagym.Helper.testPseudoRandomGame;
 class Medium {
 
 	@Test
-	void medium001() {
-		testPseudoRandomGame(16, 1);
-	}
-
-	@Test
-	void medium002() {
-		testPseudoRandomGame(16, 2);
-	}
-
-	@Test
-	void medium003() {
-		testPseudoRandomGame(16, 3);
-	}
-
-	@Test
-	void medium004() {
-		testPseudoRandomGame(16, 4);
-	}
-
-	@Test
-	void medium005() {
-		testPseudoRandomGame(16, 5);
-	}
-
-	@Test
-	void medium006() {
-		testPseudoRandomGame(16, 6);
-	}
-
-	@Test
 	void medium007() {
 		testPseudoRandomGame(16, 7);
 	}

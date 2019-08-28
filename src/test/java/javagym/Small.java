@@ -7,21 +7,6 @@ import static javagym.Helper.testPseudoRandomGame;
 class Small {
 
 	@Test
-	void small001() {
-		testPseudoRandomGame(9, 1);
-	}
-
-	@Test
-	void small002() {
-		testPseudoRandomGame(9, 2);
-	}
-
-	@Test
-	void small003() {
-		testPseudoRandomGame(9, 3);
-	}
-
-	@Test
 	void small004() {
 		testPseudoRandomGame(9, 4);
 	}
