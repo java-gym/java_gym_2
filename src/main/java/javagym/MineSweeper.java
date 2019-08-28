@@ -70,20 +70,31 @@ abstract class MineSweeper {
         final int Y = field[0].length;
         final String zero = " 0 ";
 
-        for (int x = 0; x < X; x++) {
-            for (int y = 0; y < Y; y++) {
-                if (unknown.equals(display[x][y])) {
-                    if (x < X - 1 && y < Y - 1 && zero.equals(display[x + 1][y + 1])) autoReveal(x, y);
-                    else if (x < X - 1 && zero.equals(display[x + 1][y]))  autoReveal(x, y);
-                    else if (x < X - 1 && y > 0 && zero.equals(display[x + 1][y - 1]))  autoReveal(x, y);
-                    else if (y < Y - 1 && zero.equals(display[x][y + 1]))  autoReveal(x, y);
-                    else if (y > 0 && zero.equals(display[x][y - 1]))  autoReveal(x, y);
-                    else if (x > 0 && y < Y - 1 && zero.equals(display[x - 1][y + 1]))  autoReveal(x, y);
-                    else if (x > 0 && zero.equals(display[x - 1][y]))  autoReveal(x, y);
-                    else if (x > 0 && y > 0 && zero.equals(display[x - 1][y - 1]))  autoReveal(x, y);
+        int changeCount;
+        do {
+            changeCount = 0;
+            for (int x = 0; x < X; x++) {
+                for (int y = 0; y < Y; y++) {
+                    if (unknown.equals(display[x][y])) {
+                        boolean changed = true;
+                        if (x < X - 1 && y < Y - 1 && zero.equals(display[x + 1][y + 1])) autoReveal(x, y);
+                        else if (x < X - 1 && zero.equals(display[x + 1][y])) autoReveal(x, y);
+                        else if (x < X - 1 && y > 0 && zero.equals(display[x + 1][y - 1])) autoReveal(x, y);
+
+                        else if (y < Y - 1 && zero.equals(display[x][y + 1])) autoReveal(x, y);
+                        else if (y > 0 && zero.equals(display[x][y - 1])) autoReveal(x, y);
+
+                        else if (x > 0 && y < Y - 1 && zero.equals(display[x - 1][y + 1])) autoReveal(x, y);
+                        else if (x > 0 && zero.equals(display[x - 1][y])) autoReveal(x, y);
+                        else if (x > 0 && y > 0 && zero.equals(display[x - 1][y - 1])) autoReveal(x, y);
+
+                        else changed = false;
+
+                        if (changed) changeCount++;
+                    }
                 }
             }
-        }
+        } while (changeCount > 0);
     }
 
     private void printGame(String[][] str) {
@@ -200,10 +211,7 @@ abstract class MineSweeper {
     }
 
     // Takes user's selected coordinates and adjusts the board.
-    void turn(
-            int x,
-            int y
-    ) {
+    void turn(int x, int y) {
         if (field[x][y].equals(unknown)) {
             isDone = false;
             display[x][y] = empty;
@@ -215,7 +223,7 @@ abstract class MineSweeper {
             System.out.println("You've lost!");
         } else if (display[x][y].equals(empty) && field[x][y].equals(empty)) {
             isDone = false;
-            System.out.println("This tile's been cleared!");
+            System.out.println("This tile has already been cleared!");
         }
     }
 

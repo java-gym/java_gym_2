@@ -50,6 +50,7 @@ class GameRunner {
         // The mineSweeper will detect the numbers that need to be shown in the field.
         mineSweeper.detect();
         mineSweeper.revealNeighboursOfZeros();
+        mineSweeper.isVictory();
         mineSweeper.print();
 
         //After first move, loops until the mineSweeper ends.
